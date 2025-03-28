@@ -1,0 +1,24 @@
+@import "tailwindcss";
+.stroke-text {
+    text-shadow: 
+      -2px -2px 0 white,  
+       2px -2px 0 white,  
+      -2px  2px 0 white,  
+       2px  2px 0 white; 
+  }
+  .stroke-text1 {
+    text-shadow: 
+      -1px -1px 0 white,  
+       1px -1px 0 white,  
+      -1px  1px 0 white,  
+       1px  1px 0 white; 
+  }
+  .stroke-text2
+  {
+    text-shadow: 
+    -2px -2px 0 black,  
+     2px -2px 0 black,  
+    -2px  2px 0 black,  
+     2px  2px 0 black;
+  }
+  
