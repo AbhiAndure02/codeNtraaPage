@@ -16,7 +16,7 @@ const About = () => {
         passionate about creating digital solutions that transform ideas into
         reality. Whether you're a student looking for project guidance or a
         business seeking cutting-edge software, we are here to deliver
-        excellence.
+        excellence..
       </p>
 
       {/* Cards Section */}
