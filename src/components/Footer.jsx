@@ -1,48 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RiTwitterXLine } from "react-icons/ri";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
-import logo from "../assets/logo.svg";
+import { FaInstagram, FaLinkedin, FaSun, FaMoon } from "react-icons/fa";
+import darkLogo from "../assets/darklogo.svg";
+import lightLogo from "../assets/lightlogo.svg";
+import { useTheme } from '../context/ThemeProvider';
+
 
 const Footer = () => {
-  return (
-    <footer className="relative w-full bg-gradient-to-b  from-[#0FA4AF]  to-[#024950] py-10">
-      {/* Gradient Line at the Top */}
-  
+  const { darkMode } = useTheme();
 
-      {/* Footer Container */}
+
+  return (
+    <footer className="w-full text-black dark:text-white dark:bg-gray-800 py-10">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-start gap-10">
 
         {/* Logo Section */}
-        <div className="flex flex-col">
-          <img className="w-[320px] h-auto p-3 md:m-12" src={logo} alt="Codentraa Logo" />
+        <div className="flex flex-col items-center">
+        <img src={darkMode ? lightLogo : darkLogo} alt="logo" className="md:h-16 h-10 transition-all duration-300 hover:scale-105 mx-5" />
+        {/* Theme Toggle Button */}
+        
         </div>
 
         {/* Contact Details */}
-        <div className="flex flex-col">
-          <h1 className="text-lg font-semibold text-slate-200  mb-2">Get in Touch!</h1>
-          <ul className="space-y-3 text-white">
-            <li>📞 +91-7558200619 | 8484957731</li>
+        <div className="flex flex-col mx-5 md:mx-0">
+          <h1 className="text-lg font-semibold dark:text-slate-200 mb-2">Get in Touch!</h1>
+          <ul className="space-y-3 dark:text-white">
+            <li>📞 +91-7558200619 | +91-8484957731</li>
             <li>📧 business@codentraa.com</li>
             <li>📧 tech@codentraa.com</li>
-
           </ul>
         </div>
 
-        {/* Quick Links Section */}
-        <div className="flex flex-col justify-center items-center">
-          <h1 className="text-lg text-slate-200  font-semibold mb-2">Quick Links</h1>
+        {/* Quick Links */}
+        <div className="flex flex-col items-center mx-5 md:mx-0">
+          <h1 className="text-lg darktext-slate-200 font-semibold mb-2">Quick Links</h1>
           <ul className="space-y-2">
-            <li className="text-white hover:text-gray-400 cursor-pointer">Home</li>
-            <li className="text-white hover:text-gray-400 cursor-pointer">About</li>
-            <li className="text-white hover:text-gray-400 cursor-pointer">Service</li>
-            <li className="text-white hover:text-gray-400 cursor-pointer">Contact</li>
+            <li className="dark:text-white hover:text-gray-400 cursor-pointer">Home</li>
+            <li className="dark:text-white hover:text-gray-400 cursor-pointer">About</li>
+            <li className="dark:text-white hover:text-gray-400 cursor-pointer">Service</li>
+            <li className="dark:text-white hover:text-gray-400 cursor-pointer">Contact</li>
           </ul>
         </div>
 
         {/* Social Media Links */}
-        <div className="flex flex-col">
-          <h1 className="text-lg text-slate-200 font-semibold mb-2">Follow Us</h1>
-          <div className="flex space-x-4">
+        <div className="flex flex-col mx-5 md:mx-3">
+          <h1 className="text-lg dark:text-slate-200 font-semibold mb-2 ">Follow Us</h1>
+          <div className="flex space-x-4 ">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
               <FaInstagram className="w-8 h-8 text-pink-500 hover:text-pink-400 transition duration-300" />
             </a>
@@ -50,10 +53,11 @@ const Footer = () => {
               <FaLinkedin className="w-8 h-8 text-blue-600 hover:text-blue-500 transition duration-300" />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <RiTwitterXLine className="w-8 h-8 text-white hover:text-gray-400 transition duration-300" />
+              <RiTwitterXLine className="w-8 h-8 dark:text-white hover:text-gray-400 transition duration-300" />
             </a>
           </div>
         </div>
+
       </div>
     </footer>
   );

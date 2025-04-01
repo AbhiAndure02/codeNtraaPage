@@ -1,4 +1,7 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 .stroke-text {
     text-shadow: 
       -2px -2px 0 white,  
@@ -20,5 +23,14 @@
      2px -2px 0 black,  
     -2px  2px 0 black,  
      2px  2px 0 black;
+  }
+
+  .darkmode{
+    .stroke-text, .stroke-text1,.stroke-text2 {
+        text-shadow: none;
+        background-color: #212121;
+        color: white;
+      }
+  
   }
   

@@ -1,76 +1,183 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaDesktop, FaLightbulb, FaDollarSign, FaClock, FaUsers, FaUserShield } from "react-icons/fa";
+import services from "../service/services";
+import { Link } from "react-router-dom";
 
-import services from "../service/services"
-import { Globe, ClipboardCheck, Monitor } from 'lucide-react';
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
+const featureVariants = {
+  hover: {
+    y: -10,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  }
+};
 
 const Card = ({ children, className }) => (
-  <div className={`bg-white max-w-6xl p-1 shadow-xl rounded-xl overflow-hidden ${className}`}>
+  <motion.div 
+    className={`bg-white max-w-6xl p-1 shadow-xl rounded-xl overflow-hidden ${className}`}
+    variants={itemVariants}
+  >
     {children}
-  </div>
+  </motion.div>
 );
+
 const CardContent = ({ children, className }) => (
   <div className={`p-4 ${className}`}>{children}</div>
 );
 
-const ServiceCard = ({ title, image, description }) => (
+const ServiceCard = ({ title, image, description, link }) => (
   <motion.div
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
+    variants={itemVariants}
+    whileHover={{ scale: 1.03 }}
+    whileTap={{ scale: 0.97 }}
     className="lg:w-[350px] p-4"
   >
     <Card>
-      <img src={image} alt={title} className="w-full h-52 object-cover" />
+      <motion.img 
+        src={image} 
+        alt={title} 
+        className="w-full h-52 object-cover"
+        whileHover={{ scale: 1.05 }}
+      />
       <CardContent>
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
+        <h2 className="text-xl text-black font-semibold mb-2">{title}</h2>
         <p className="text-gray-600 text-sm">{description}</p>
+        <motion.button 
+          className="text-[#00AFB9] hover:text-[#f7bb47] m-2"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <Link to={link}>see more</Link>
+        </motion.button>
       </CardContent>
     </Card>
   </motion.div>
 );
 
+const FeatureCard = ({ icon, title, description }) => (
+  <motion.div
+    variants={itemVariants}
+    whileHover="hover"
+    className="flex flex-col items-center p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md"
+  >
+    <motion.div variants={featureVariants}>
+      {React.cloneElement(icon, { className: "text-[#00AFB9] mb-4" })}
+    </motion.div>
+    <h3 className="text-lg font-semibold text-black dark:text-white mb-2">{title}</h3>
+    <p className="text-gray-600 dark:text-gray-300 text-center">{description}</p>
+  </motion.div>
+);
+
 const Service = () => {
+  const features = [
+    {
+      icon: <FaUsers size={50} />, 
+      title: "Expert Team", 
+      description: "Our skilled developers and designers craft high-quality, secure, and scalable solutions."
+    },
+    {
+      icon: <FaDollarSign size={50} />, 
+      title: "Affordable Pricing", 
+      description: "Get top-notch IT services without breaking the budget."
+    },
+    {
+      icon: <FaClock size={50} />, 
+      title: "On-Time Delivery", 
+      description: "We value deadlines and ensure timely project completion."
+    },
+    {
+      icon: <FaDesktop size={50} />, 
+      title: "User-Friendly Designs", 
+      description: "Seamless UI/UX that enhances user engagement and experience."
+    },
+    {
+      icon: <FaUserShield size={50} />, 
+      title: "End-to-End Support", 
+      description: "From planning to deployment, we provide continuous technical support."
+    },
+    {
+      icon: <FaLightbulb size={50} />, 
+      title: "Innovative Solutions", 
+      description: "We stay ahead with the latest technology trends to deliver cutting-edge solutions."
+    }
+  ];
+
   return (
-    <section id="services" className="py-12 px-4  bg-gradient-to-b via-[#AFDD] to-[#0FA4AF]  from-[#024950] ">
-      <h1 className="text-5xl font-bold text-center text-slate-700 mb-10 relative">
-  <span className="text-[#FCBF49] stroke-text">Our</span> 
-  <span className="text-slate-900 stroke-text"> Services</span>
-</h1>      <div className="grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1  gap-x-3 justify-center items-center max-w-6xl mx-auto">
-        {services.map((service, index) => (
-          <ServiceCard key={index} {...service} />
-        ))}
-      </div>
+    <section id="services" className="py-12 px-4 text-black dark:text-white dark:bg-gray-800">
+      {/* Services Section */}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.h1 
+          className="text-5xl font-bold text-center text-slate-700 mb-10 relative dark:text-white"
+          variants={itemVariants}
+        >
+          <span className="text-[#00AFB9]">Our</span> 
+          <span className="text-slate-900 dark:text-white"> Services</span>
+        </motion.h1>
+        
+        <motion.div 
+          className="grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-x-3 justify-center items-center max-w-6xl mx-auto"
+          variants={containerVariants}
+        >
+          {services.map((service, index) => (
+            <ServiceCard key={index} {...service} />
+          ))}
+        </motion.div>
 
-      {/* Why Choose Us Section */}
-      <section className="py-8 px-2  text-white text-center mt-8">
-      <h1 className="text-5xl font-bold text-center text-slate-700 mb-10 relative">
-  <span className="text-[#FCBF49] stroke-text">Why</span> 
-  <span className="text-slate-900 stroke-text"> Choose Us</span>
-</h1>      <div className="flex flex-wrap justify-center gap-20">
-    <div className="w-full black sm:w-[250px] h-[380px] p-8 rounded-[50px] bg-gradient-to-r to-[#0FA4AF]  from-[#024950] shadow-2xl flex flex-col justify-between items-center text-center  hover:shadow-lg cursor-pointer transition-transform hover:scale-110 duration-1000 border-2 border-b-slate-200">
-    <h2 className="text-xl font-semibold mt-2 text-white">We are global.</h2>
-
-      <Globe size={80} className="text-black" />
-      <p className="text-white text-base">Expert Guidance & Personalized Solutions</p>
-
-    </div>
-
-    <div className="w-full black sm:w-[250px] h-[380px] p-8 rounded-[50px] bg-gradient-to-r to-[#0FA4AF]  from-[#024950]  shadow-2xl flex flex-col justify-between items-center text-center  hover:shadow-lg cursor-pointer transition-transform hover:scale-110 duration-1000 border-2 border-b-slate-200"> 
-    <h2 className="text-xl font-semibold mt-2 text-white">We value our clients.</h2>
-      <ClipboardCheck size={80} className="text-black" />
-      <p className=" text-base text-white">High-Quality Work with On-Time Delivery.</p>
-    </div>
-
-    <div className="w-full black sm:w-[250px] h-[380px] p-8 rounded-[50px] bg-gradient-to-r to-[#0FA4AF]  from-[#024950]  shadow-2xl flex flex-col justify-between items-center text-center  hover:shadow-lg cursor-pointer transition-transform hover:scale-110 duration-1000 border-2 border-b-slate-200">
-    <h2 className="text-xl font-semibold mt-2 text-white">We use top-rate systems.</h2>
-      <Monitor size={80} className="text-black" />
-      <p className="text-white text-base">Affordable Pricing & Full Support</p>
-
-    </div>
-  </div>
-</section>
-
-
+        {/* Why Choose Us Section */}
+        <motion.section 
+          className="py-8 px-4 text-center mt-8"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
+          <motion.h1 
+            className="text-5xl font-bold text-slate-700 mb-10 dark:text-white"
+            variants={itemVariants}
+          >
+            <span className="text-[#00AFB9]">Why</span>
+            <span className="text-slate-900 dark:text-white"> Choose Us</span>
+          </motion.h1>
+          
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+            variants={containerVariants}
+          >
+            {features.map((feature, index) => (
+              <FeatureCard key={index} {...feature} />
+            ))}
+          </motion.div>
+        </motion.section>
+      </motion.div>
     </section>
   );
 };

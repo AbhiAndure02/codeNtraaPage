@@ -1,154 +1,101 @@
-import React, { useState } from 'react';
 import { Link } from 'react-scroll';
-import { FiMenu, FiX } from 'react-icons/fi';
-import imag from '../assets/logo.svg';
+import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
+import darkLogo from '../assets/darklogo.svg';
+import lightLogo from '../assets/lightlogo.svg';
+import { useTheme } from '../context/ThemeProvider';
+import { useState } from 'react';
 
 const Header = () => {
+  const { darkMode, setDarkMode } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleLinkClick = () => {
+    setTimeout(() => setIsOpen(false), 300);
+  };
+
+
   return (
-    <header className='bg-[#024950] p-5 px-6'>
-      <div className= 'container mx-auto flex justify-between items-center'>
-        {/* Logo */}
-        <Link to='home' smooth= {true}>
-          <img src={imag} alt='logo' className='h-14' />
-        
-        </Link>
-   
-        {/* Desktop Navigation */}
-        <nav className='hidden md:flex'>
-          <ul className='flex space-x-6'>
-            <li>
-              <Link 
-                to='home' 
-                smooth={true} 
-                className='text-white cursor-pointer font-semibold text-xl transition duration-300 transform hover:scale-105 hover:text-[#f7bb47] hover:rotate-3 hover:translate-y-1'
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='about' 
-                smooth={true} 
-                className='text-white cursor-pointer font-semibold text-xl transition duration-300 transform hover:scale-105 hover:text-[#f7bb47] hover:-rotate-3 hover:translate-y-1'
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='services' 
-                smooth={true} 
-                className='text-white cursor-pointer font-semibold text-xl transition duration-300 transform hover:scale-105 hover:text-[#f7bb47] hover:rotate-6 hover:translate-y-1'
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='projects' 
-                smooth={true} 
-                className='text-white cursor-pointer font-semibold text-xl transition duration-300 transform hover:scale-105 hover:text-[#f7bb47] hover:rotate-6 hover:translate-y-1'
-              >
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='teams' 
-                smooth={true} 
-                className='text-white cursor-pointer font-semibold text-xl transition duration-300 transform hover:scale-105 hover:text-[#f7bb47] hover:rotate-6 hover:translate-y-1'
-              >
-                Teams
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='contact' 
-                smooth={true} 
-                className='text-white cursor-pointer font-semibold text-xl transition duration-300 transform hover:scale-105 hover:text-[#f7bb47] hover:-rotate-6 hover:translate-y-1'
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </nav>
+    <>
+      {/* Fixed Header */}
+      <header className="fixed top-0 left-0 right-0 p-7 px-6 shadow-md dark:shadow-gray-700 bg-white dark:bg-gray-800 z-50">
+        <div className="container mx-auto flex justify-between items-center">
+          {/* Logo */}
+          <img 
+            src={darkMode ? lightLogo : darkLogo} 
+            alt="logo" 
+            className="md:h-16 h-10 transition-all duration-300 hover:scale-105" 
+          />
 
-        {/* Mobile Menu Button */}
-        <button className='md:hidden text-white text-3xl' onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <FiX /> : <FiMenu />}
-        </button>
-      </div>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
+            <nav className='flex gap-5'>
+              {['home', 'about', 'services', 'teams', 'contact'].map((item) => (
+                <Link 
+                  key={item}
+                  smooth={true}
+                  to={item} 
+                  offset={-80}
+                  className="text-black dark:text-white cursor-pointer font-semibold text-lg transition-all duration-300 hover:scale-105 hover:text-[#f7bb47]"
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </Link>
+              ))}
+            </nav>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <nav className='md:hidden bg-black p-5 absolute w-full left-0 top-[60px] shadow-lg'>
-          <ul className='flex flex-col space-y-4 text-center'>
-            <li>
-              <Link 
-                to='home' 
-                smooth={true} 
-                className='text-white text-lg transition transform hover:scale-105 hover:rotate-3 hover:translate-y-1' 
-                onClick={() => setIsOpen(false)}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='about' 
-                smooth={true} 
-                className='text-white text-lg transition transform hover:scale-105 hover:-rotate-3 hover:translate-y-1' 
-                onClick={() => setIsOpen(false)}
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='services' 
-                smooth={true} 
-                className='text-white text-lg transition transform hover:scale-105 hover:rotate-6 hover:translate-y-1' 
-                onClick={() => setIsOpen(false)}
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='projects' 
-                smooth={true} 
-                className='text-white text-lg transition transform hover:scale-105 hover:rotate-6 hover:translate-y-1' 
-                onClick={() => setIsOpen(false)}
-              >
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='teams' 
-                smooth={true} 
-                className='text-white text-lg transition transform hover:scale-105 hover:rotate-6 hover:translate-y-1' 
-                onClick={() => setIsOpen(false)}
-              >
-                Teams
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to='contact' 
-                smooth={true} 
-                className='text-white text-lg transition transform hover:scale-105 hover:-rotate-6 hover:translate-y-1' 
-                onClick={() => setIsOpen(false)}
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      )}
-    </header>
+            {/* Dark Mode Toggle */}
+            <button 
+              onClick={() => setDarkMode(!darkMode)} 
+              className="text-black dark:text-white text-2xl transition-all duration-300 hover:scale-110"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {darkMode ? <FiSun /> : <FiMoon />}
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center space-x-4">
+            <button 
+              onClick={() => setDarkMode(!darkMode)} 
+              className="text-black dark:text-white text-2xl transition-all duration-300 hover:scale-110"
+            >
+              {darkMode ? <FiSun /> : <FiMoon />}
+            </button>
+            <button 
+              className="text-black dark:text-white p-2 text-3xl cursor-pointer transition-all duration-300 hover:scale-110"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              {isOpen ? <FiX /> : <FiMenu />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <nav className="md:hidden bg-white dark:bg-gray-800 shadow-lg rounded-b-lg">
+            <ul className="flex flex-col space-y-4 p-6">
+              {['home', 'about', 'services', 'teams', 'contact'].map((item) => (
+                <li key={item}>
+                  <Link
+                    to={item}
+                    smooth={true}
+                    offset={-80}
+                    duration={500}
+                    className="block py-3 text-black dark:text-white cursor-pointer font-semibold text-lg transition-all duration-300 hover:pl-2 hover:text-[#f7bb47]"
+                    onClick={handleLinkClick}
+                  >
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+      </header>
+
+      {/* Spacer to prevent content from being hidden behind fixed header */}
+      <div className="h-24 md:h-28"></div>
+    </>
   );
 };
 

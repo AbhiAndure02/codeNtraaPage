@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Tilt from "react-parallax-tilt";
-import image2 from "../assets/image2.jpg";
-import image3 from "../assets/image3.png";
-import ThreeBackground from "./ThreeBackground";
-
+import img from "../assets/homeimg.png";
+import { Link } from 'react-scroll';
 
 const texts = [
   "Innovative IT & Electronics High-Tech Solutions.",
   "Smart Future Technology for your Growing Business.",
-  "Empowering Businesses with Cutting-Edge Tech.",
+  "Empowering Businesses with Cutting-Edge Technology.",
 ];
 
 const Home = () => {
@@ -32,83 +29,55 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
-
   return (
-    <div className="relative w-full min-h-screen">
-      <ThreeBackground />
-      <div className="relative text-white py-16 px-6 min-h-screen flex flex-col md:flex-row items-center justify-center overflow-hidden">
-        {/* Text Section */}
-        <div data-aos="fade-up" className=" text-center md:text-left px-4 md:mt-10 m-16">
+    <main id="home" className="">
+
+    <div className=" flex flex-col-reverse md:flex-row w-full min-h-screen  dark:bg-gray-800 items-center ">
+      {/* Image Section (Appears first on mobile, second on desktop) */}
+      <div className="w-full md:w-1/2 flex justify-center items-center order-1 md:order-2 ">
+        <motion.img 
+          src={img} 
+          alt="img" 
+          className="w-full max-w-md md:max-w-lg object-contain"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        />
+      </div>
+
+      {/* Text Section (Appears second on mobile, first on desktop) */}
+      <div className="w-full md:w-1/2 px-6 sm:px-10 md:px-12 lg:px-16 py-12 md:py-0 flex flex-col items-center md:items-start justify-center text-center md:text-left">
+        <div data-aos="fade-right" className="max-w-2xl">
           <motion.h1
             key={index}
-            initial={{ opacity: 0, rotateY: -90 }}
-            animate={{ opacity: 1, rotateY: 0 }}
-            exit={{ opacity: 0, rotateY: 90 }}
-            transition={{ duration: 1, delay: 2 }}
-            className=" stroke-text2 tracking-wide text-5xl sm:text-4xl md:text-5xl font-extrabold leading-tight drop-shadow-lg 
-              bg-gradient-to-r from-[#004E64] via-[#008B8B] to-[#00A6A6] bg-clip-text text-white"
+            className="text-4xl sm:text-5xl md:text-4xl lg:text-5xl font-extrabold leading-tight drop-shadow-lg bg-gradient-to-r from-[#004E64] via-[#008B8B] to-[#00A6A6] dark:bg-gradient-to-r dark:to-[#00AFB9] dark:via-white dark:from-[#00AFB9] bg-clip-text text-transparent"
           >
             {texts[index]}
           </motion.h1>
           <motion.p
-            data-aos="fade-up"
-            data-aos-delay="300"
-            className="text-lg mt-4 text-gray-900"
+            className="text-lg sm:text-xl mt-4 text-gray-700 dark:text-white text-justify"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            Elevate your technology experience with cutting-edge solutions tailored for the future.
+            Elevate your technology experience with cutting-edge solutions tailored for the future. Our innovative products and services bring efficiency, automation, and intelligence to your business, ensuring growth and success in the digital era.
           </motion.p>
-          {/* <button
-            // data-aos="fade-up"
-            // data-aos-delay="600"
-            className="mt-6 px-6 py-3 bg-[#FCBF49] text-slate-900 font-semibold rounded-lg shadow-xl  transition duration-300 transform hover:scale-105"
+          <motion.button
+            className="mt-6 px-6 py-3 bg-[#00AFB9] text-slate-900 font-semibold rounded-lg shadow-xl transition duration-300 transform hover:scale-105"
             whileHover={{ scale: 1.1 }}
           >
+            <Link 
+            smooth={true}
+            offset={-80}
+            to = "about">
             Learn More
-          </button> */}
+            </Link>
+          </motion.button>
         </div>
-
-        {/* Image Section
-        <div className="relative md:w-1/2 flex justify-center mt-10 md:mt-20">
-          <Tilt
-            tiltMaxAngleX={15}
-            tiltMaxAngleY={15}
-            perspective={1000}
-            transitionSpeed={1000}
-            scale={1.05}
-            glareEnable={true}
-            glareMaxOpacity={0.3}
-          >
-            <div className="relative w-[280px] h-[280px] md:w-[400px] md:h-[400px]">
-              <motion.img
-                initial={{ opacity: 0, x: -50, rotateY: -15 }}
-                animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{ duration: 1 }}
-                src={image2}
-                alt="Tech Innovation"
-                className="absolute rounded-lg shadow-lg w-[250px] h-[250px] md:w-[350px] md:h-[350px] transform rotate-[-10deg]"
-              />
-              <motion.img
-                initial={{ opacity: 0, x: 50, rotateY: 15 }}
-                animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                src={image3}
-                alt="Smart Solutions"
-                className="absolute rounded-lg shadow-xl w-[250px] h-[250px] md:w-[350px] md:h-[350px] transform rotate-[10deg] translate-x-16 translate-y-16 z-10"
-              />
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0, rotateY: -10 }}
-                animate={{ scale: 1, opacity: 1, rotateY: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
-                className="absolute w-full h-full border-4 border-[#00C3FF] rounded-xl animate-pulse shadow-2xl"
-              ></motion.div>
-            </div>
-          </Tilt>
-        </div> */}
-      </div> 
+      </div>
     </div>
+    </main>
+
   );
 };
 
