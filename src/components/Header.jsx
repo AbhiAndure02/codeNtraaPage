@@ -78,8 +78,7 @@ const Header = () => {
                 <li key={item}>
                   <Link
                     to={item}
-                    smooth={true}
-                    offset={-80}
+                    smooth={true} offset={-80}
                     duration={500}
                     className="block py-3 text-black dark:text-white cursor-pointer font-semibold text-lg transition-all duration-300 hover:pl-2 hover:text-[#f7bb47]"
                     onClick={handleLinkClick}

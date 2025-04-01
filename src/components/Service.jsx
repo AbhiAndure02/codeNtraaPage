@@ -73,7 +73,7 @@ const ServiceCard = ({ title, image, description, link }) => (
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <Link to={link}>see more</Link>
+          <Link to={link} >see more</Link>
         </motion.button>
       </CardContent>
     </Card>

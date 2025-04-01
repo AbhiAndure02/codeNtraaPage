@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './PageHeader';
 import { FaEthereum, FaBitcoin, FaLink, FaShieldAlt, FaExchangeAlt, FaChartLine } from 'react-icons/fa';
 import { SiSolidity, SiBinance, SiPolkadot, SiChainlink } from 'react-icons/si';
 import ServiceTemplate from './ServiceTemplate';
 
 const Blockchain = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const services = [
     {
       icon: <FaEthereum className="text-4xl text-[#00AFB9]" />,
@@ -98,7 +101,7 @@ const Blockchain = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-[#00AFB9] dark:text-white mb-4">
             Blockchain Development
           </h1>
-          <p className="text-xl text-gray-600 dark:text-black max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-white max-w-3xl mx-auto">
             Decentralized solutions built on secure, transparent, and trustless blockchain technology
           </p>
         </section>
@@ -249,4 +252,4 @@ const Blockchain = () => {
   );
 };
 
-export default Blockchain;0
+export default Blockchain;

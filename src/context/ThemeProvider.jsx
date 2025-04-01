@@ -1,11 +1,9 @@
-// src/context/ThemeProvider.js
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(() => {
-    // Check if window is defined (for server-side rendering)
     if (typeof window !== 'undefined') {
       return localStorage.getItem('theme') === 'dark';
     }

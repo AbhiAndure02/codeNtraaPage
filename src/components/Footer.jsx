@@ -4,6 +4,7 @@ import { FaInstagram, FaLinkedin, FaSun, FaMoon } from "react-icons/fa";
 import darkLogo from "../assets/darklogo.svg";
 import lightLogo from "../assets/lightlogo.svg";
 import { useTheme } from '../context/ThemeProvider';
+import { Link } from "react-scroll";
 
 
 const Footer = () => {
@@ -35,10 +36,23 @@ const Footer = () => {
         <div className="flex flex-col items-center mx-5 md:mx-0">
           <h1 className="text-lg darktext-slate-200 font-semibold mb-2">Quick Links</h1>
           <ul className="space-y-2">
-            <li className="dark:text-white hover:text-gray-400 cursor-pointer">Home</li>
-            <li className="dark:text-white hover:text-gray-400 cursor-pointer">About</li>
-            <li className="dark:text-white hover:text-gray-400 cursor-pointer">Service</li>
-            <li className="dark:text-white hover:text-gray-400 cursor-pointer">Contact</li>
+            <li>
+            <Link  smooth={true} offset={-80} to='home' className="dark:text-white hover:text-gray-400 cursor-pointer">Home</Link>
+              </li>
+              <li>
+              <Link  smooth={true} offset={-80} to='about' className="dark:text-white hover:text-gray-400 cursor-pointer">About</Link>
+              </li>
+              <li>
+              <Link  smooth={true} offset={-80} to='services' className="dark:text-white hover:text-gray-400 cursor-pointer">Service</Link>
+
+              </li>
+              <li>
+              <Link  smooth={true} offset={-80} to='contact' className="dark:text-white hover:text-gray-400 cursor-pointer">Contact</Link>
+              </li>
+              <li>
+
+            <Link  smooth={true} offset={-80} to='teams' className="dark:text-white hover:text-gray-400 cursor-pointer">Team</Link>
+              </li>
           </ul>
         </div>
 

@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './PageHeader';
 import { FaMobileAlt, FaReact, FaApple, FaAndroid, FaSync, FaShieldAlt } from 'react-icons/fa';
 import { SiFlutter, SiFirebase, SiKotlin, SiSwift } from 'react-icons/si';
 import ServiceTemplate from './ServiceTemplate';
 
 const MobileApp = () => {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  
   const services = [
     {
       icon: <FaMobileAlt className="text-4xl text-[#00AFB9]" />,

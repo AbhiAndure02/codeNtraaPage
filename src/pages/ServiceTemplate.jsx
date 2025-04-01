@@ -1,10 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import services from '../service/services';
 import { Link } from 'react-router-dom';
 
 const ServiceTemplate = () => {
+      useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
+    
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
   const itemsPerPage = 4;

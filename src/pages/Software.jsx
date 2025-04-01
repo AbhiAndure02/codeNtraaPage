@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './PageHeader';
 import { FaCode, FaServer, FaCloud, FaShieldAlt, FaMobileAlt, FaCogs } from 'react-icons/fa';
 import { SiJavascript, SiPython, SiRuby, SiDocker } from 'react-icons/si';
 import ServiceTemplate from './ServiceTemplate';
 
 const Software = () => {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  
   const services = [
     {
       icon: <FaCode className="text-4xl text-[#00AFB9]" />,
