@@ -75,7 +75,7 @@ const Teams = () => {
                             <motion.img 
                                 src={member.image} 
                                 alt={member.name} 
-                                className="w-36 h-36 object-cover rounded-full border-4 border-[#00AFB9] shadow-md"
+                                className="w-36 h-36 object-fit rounded-full border-4 border-[#00AFB9] shadow-md"
                                 variants={imageVariants}
                                 whileHover="hover"
                             />
@@ -103,7 +103,7 @@ const Teams = () => {
                                 transition={{ delay: 0.4 }}
                             >
                                 <a 
-                                    href={`#`} 
+                                    href={member.linkedinLink} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="hover:text-[#f7bb47] transition-colors"
@@ -111,7 +111,7 @@ const Teams = () => {
                                     <FaLinkedin />
                                 </a>
                                 <a 
-                                    href={'#'} 
+                                    href={member.githubLink}
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="hover:text-[#f7bb47] transition-colors"

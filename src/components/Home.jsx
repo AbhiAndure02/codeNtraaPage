@@ -55,7 +55,7 @@ const Home = () => {
             {texts[index]}
           </motion.h1>
           <motion.p
-            className="text-lg sm:text-xl mt-4 text-gray-700 dark:text-white text-justify"
+            className="text-lg  mt-4 text-gray-700 dark:text-white text-justify"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}

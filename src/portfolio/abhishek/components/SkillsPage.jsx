@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaReact, FaNodeJs, FaPython } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaPython, FaJava } from 'react-icons/fa';
 import { SiSpringboot, SiTypescript, SiRedux, SiGraphql, SiMongodb, SiPostgresql, SiDocker, SiJest, SiTailwindcss } from 'react-icons/si';
 import { TbBrandReactNative } from 'react-icons/tb';
 import { FiGithub } from 'react-icons/fi';
@@ -45,7 +45,15 @@ const SkillsPage = () => {
       description: 'Scripting, data analysis, and backend development with Django/Flask',
       projects: '12+ automation tools',
       color: '#3776AB'
-    }
+    },
+    {
+        name: 'Java',
+        icon: <FaJava className="text-[#a12424]" size={40} />,
+        level: 85,
+        description: 'Scripting, data analysis, and backend development with Django/Flask',
+        projects: '12+ automation tools',
+        color: '#a12424'
+      }
   ];
 
   const techIcons = {
@@ -97,7 +105,7 @@ const SkillsPage = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 py-20">
+    <section id='skill1' className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 py-20">
       {/* Floating background elements */}
       <motion.div
         className="absolute top-20 left-10 w-40 h-40 rounded-full bg-indigo-500/20 blur-xl"

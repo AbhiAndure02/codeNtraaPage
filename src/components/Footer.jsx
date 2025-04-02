@@ -60,7 +60,7 @@ const Footer = () => {
         <div className="flex flex-col mx-5 md:mx-3">
           <h1 className="text-lg dark:text-slate-200 font-semibold mb-2 ">Follow Us</h1>
           <div className="flex space-x-4 ">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/codentraa/" target="_blank" rel="noopener noreferrer">
               <FaInstagram className="w-8 h-8 text-pink-500 hover:text-pink-400 transition duration-300" />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">

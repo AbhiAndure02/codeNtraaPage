@@ -22,7 +22,7 @@ const About = () => {
         </div>
 
         {/* Text Content */}
-        <div className="md:w-1/2 text-xl leading-relaxed text-justify">
+        <div className="md:w-1/2 text-lg leading-relaxed text-justify">
           <p>
             Welcome to <b>CodeNtraa</b>, where innovation meets technology! We
             specialize in transforming ideas into reality through cutting-edge digital

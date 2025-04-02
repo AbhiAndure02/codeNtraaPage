@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Header from './PageHeader';
 import { FaMobileAlt, FaReact, FaApple, FaAndroid, FaSync, FaShieldAlt } from 'react-icons/fa';
-import { SiFlutter, SiFirebase, SiKotlin, SiSwift } from 'react-icons/si';
+import { SiFlutter, SiFirebase, SiKotlin, SiSwift, SiGoogle, SiApple, SiAndroid } from 'react-icons/si';
 import ServiceTemplate from './ServiceTemplate';
 
 const MobileApp = () => {
@@ -54,9 +54,10 @@ const MobileApp = () => {
     { icon: <SiSwift className="text-3xl" />, name: "Swift" },
     { icon: <SiKotlin className="text-3xl" />, name: "Kotlin" },
     { icon: <SiFirebase className="text-3xl" />, name: "Firebase" },
-    { name: "Jetpack Compose", category: "Android" },
-    { name: "SwiftUI", category: "iOS" },
-    { name: "GraphQL", category: "API" }
+    { icon: <SiGoogle className="text-3xl" />, name: "Google Cloud Platform" },
+    { icon: <SiApple className="text-3xl" />, name: "Apple App Store" },
+    { icon: <SiAndroid className="text-3xl" />, name: "Google Play Store" },
+ 
   ];
 
   const developmentProcess = [

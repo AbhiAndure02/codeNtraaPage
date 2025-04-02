@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import Header from './PageHeader';
 import { FaEthereum, FaBitcoin, FaLink, FaShieldAlt, FaExchangeAlt, FaChartLine } from 'react-icons/fa';
-import { SiSolidity, SiBinance, SiPolkadot, SiChainlink } from 'react-icons/si';
+import { SiSolidity, SiBinance, SiPolkadot, SiChainlink, SiIpfs } from 'react-icons/si';
 import ServiceTemplate from './ServiceTemplate';
+import { BiSolidHardHat } from 'react-icons/bi';
 
 const Blockchain = () => {
   useEffect(() => {
@@ -54,8 +55,8 @@ const Blockchain = () => {
     { icon: <SiBinance className="text-3xl" />, name: "BNB Chain" },
     { icon: <SiPolkadot className="text-3xl" />, name: "Polkadot" },
     { icon: <SiChainlink className="text-3xl" />, name: "Chainlink" },
-    { name: "IPFS", category: "Storage" },
-    { name: "Hardhat", category: "Dev Tools" }
+    { icon: <SiIpfs className="text-3xl" />,name: "IPFS storage"},
+    { icon: <BiSolidHardHat className="text-3xl"/>, name: "Hardhat", category: "Dev Tools" }
   ];
 
   const developmentProcess = [

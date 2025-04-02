@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Header from './PageHeader';
 import { FaCode, FaServer, FaCloud, FaShieldAlt, FaMobileAlt, FaCogs } from 'react-icons/fa';
-import { SiJavascript, SiPython, SiRuby, SiDocker } from 'react-icons/si';
+import { SiJavascript, SiPython, SiRuby, SiDocker, SiDotnet, SiNodedotjs } from 'react-icons/si';
 import ServiceTemplate from './ServiceTemplate';
 
 const Software = () => {
@@ -55,8 +55,8 @@ const Software = () => {
     { icon: <SiDocker className="text-3xl" />, name: "C#" },
     { icon: <SiRuby className="text-3xl" />, name: "Ruby" },
     { icon: <SiDocker className="text-3xl" />, name: "Docker" },
-    { name: ".NET", category: "Framework" },
-    { name: "Node.js", category: "Runtime" }
+    { icon:<SiDotnet className="text-3xl" />, name: ".NET", category: "Framework" },
+    {icon:<SiNodedotjs className="text-3xl"/>, name: "Node.js", category: "Runtime" }
   ];
 
   const developmentApproach = [

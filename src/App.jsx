@@ -24,11 +24,11 @@ const App = () => {
         <Route path="/blockchain" element={<Blockchain />} />
         <Route path="/software" element={<Software />} />
         <Route path="/ds" element={<DataScience />} />
-        <Route path="/portfolio3" element={<Abhi />} />
-        <Route path="/portfolio1" element={<Amar />} />
-        <Route path="/portfolio2" element={<Neha />} />
-        <Route path="/portfolio4" element={<Sushama />} />
-        <Route path="/portfolio5" element={<Shubham />} />
+        <Route path="/portfolio5" element={<Abhi />} />
+        <Route path="/portfolio4" element={<Amar />} />
+        <Route path="/portfolio1" element={<Neha />} />
+        <Route path="/portfolio2" element={<Sushama />} />
+        <Route path="/portfolio3" element={<Shubham />} />
 
 
 

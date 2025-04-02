@@ -88,8 +88,8 @@ const Contact = () => {
                 variants={itemVariants}
                 whileHover={hoverVariants}
               >
-                <FaPhoneAlt className="text-[#00AFB9] text-2xl flex-shrink-0" />
-                <p className="text-lg dark:text-white text-slate-900">+91 9371635526 / 8484957731</p>
+                <FaPhoneAlt className="text-[#00AFB9] text-lg flex-shrink-0" />
+                <p className="text-lg dark:text-white text-slate-900">+91-9371635526 <br></br> +91-8484957731</p>
               </motion.div>
               
               <motion.div 
@@ -97,7 +97,7 @@ const Contact = () => {
                 variants={itemVariants}
                 whileHover={hoverVariants}
               >
-                <FaEnvelope className="text-[#00AFB9] text-2xl flex-shrink-0" />
+                <FaEnvelope className="text-[#00AFB9] text-lg flex-shrink-0" />
                 <p className="text-lg dark:text-white text-slate-900">business@codentraa.com</p>
               </motion.div>
               
@@ -106,7 +106,7 @@ const Contact = () => {
                 variants={itemVariants}
                 whileHover={hoverVariants}
               >
-                <FaEnvelope className="text-[#00AFB9] text-2xl flex-shrink-0" />
+                <FaEnvelope className="text-[#00AFB9] text-lg flex-shrink-0" />
                 <p className="text-lg dark:text-white text-slate-900">tech@codentraa.com</p>
               </motion.div>
               
@@ -115,7 +115,7 @@ const Contact = () => {
                 variants={itemVariants}
                 whileHover={hoverVariants}
               >
-                <FaMapMarkerAlt className="text-[#00AFB9] text-2xl flex-shrink-0" />
+                <FaMapMarkerAlt className="text-[#00AFB9] text-lg flex-shrink-0" />
                 <p className="text-lg dark:text-white text-slate-900">Pune, Maharashtra, India</p>
               </motion.div>
             </motion.div>

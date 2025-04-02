@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FiArrowRight, FiGithub, FiLinkedin, FiTwitter, FiMail } from 'react-icons/fi';
+import {Link} from "react-router-dom"
+import { FiArrowRight, FiGithub, FiLinkedin, FiTwitter, FiMail, FiX, FiInstagram } from 'react-icons/fi';
 
 const HomePage = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -50,7 +51,7 @@ const HomePage = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 py-20">
+    <section id='home1' className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 text-white px-4 py-20">
       {/* Floating background elements */}
       <motion.div
         className="absolute top-20 left-10 w-40 h-40 rounded-full bg-indigo-500/20 blur-xl"
@@ -122,13 +123,13 @@ const HomePage = () => {
             </motion.p>
             
             <motion.div variants={itemVariants}>
-              <a
+              <Link to='/'
                 href="#projects"
                 className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-teal-600 rounded-full font-medium text-lg hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
-                View my work
+                Visit Company Profile
                 <motion.span
                   animate={{
                     x: isHovered ? 8 : 4,
@@ -142,7 +143,7 @@ const HomePage = () => {
                 >
                   <FiArrowRight size={20} />
                 </motion.span>
-              </a>
+              </Link>
             </motion.div>
           </div>
 
@@ -194,24 +195,24 @@ const HomePage = () => {
 
         {/* Social links */}
         <motion.div 
-          className="fixed left-8 bottom-8 hidden lg:flex flex-col space-y-4 items-center"
+          className="fixed left-8 bottom-8 hidden lg:flex flex-col space-y-4 items-center z-10"
           initial={{ opacity: 0 }}
           animate={{ 
             opacity: 1,
             transition: { delay: 1.5 }
           }}
         >
-          <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors">
+          <a href="https://github.com/AbhiAndure02" className="text-gray-400 hover:text-indigo-400 transition-colors">
             <FiGithub size={20} />
           </a>
-          <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors">
+          <a href="https://www.linkedin.com/in/abhishek-andure-228567228/" className="text-gray-400 hover:text-indigo-400 transition-colors">
             <FiLinkedin size={20} />
           </a>
-          <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors">
-            <FiTwitter size={20} />
+          <a href="https://x.com/aa_abhiandure2?t=m05WTOPjxLRPuE_jHqhp0Q&s=09" className="text-gray-400 hover:text-indigo-400 transition-colors">
+            <FiX size={20} />
           </a>
-          <a href="#" className="text-gray-400 hover:text-indigo-400 transition-colors">
-            <FiMail size={20} />
+          <a href="https://www.instagram.com/abhishek.andure.02/" className="text-gray-400 hover:text-indigo-400 transition-colors">
+            <FiInstagram size={20} />
           </a>
           <div className="w-px h-16 bg-gray-600 mt-2"></div>
         </motion.div>
@@ -236,9 +237,7 @@ const HomePage = () => {
               ease: "easeInOut"
             }}
           />
-          <p className="text-gray-400 text-xs mt-2 rotate-90 tracking-widest">
-            SCROLL DOWN
-          </p>
+       
         </motion.div>
       </div>
     </section>
