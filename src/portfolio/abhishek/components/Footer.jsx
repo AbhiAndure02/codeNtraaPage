@@ -40,7 +40,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900/80 backdrop-blur-sm border-t border-gray-800 text-gray-400">
+    <footer className="bg-gray-900 backdrop-blur-sm border-t border-gray-800 text-gray-400">
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo and copyright */}
@@ -54,9 +54,7 @@ const Footer = () => {
             <Link to='home1' smooth={true} offset={-80} className="text-2xl font-bold text-black hover:text-indigo-400 transition-colors">
               <span className="text-indigo-400">Port</span>folio
             </Link>
-            <p className="mt-2 text-sm flex items-center">
-              Made with <FiHeart className="mx-1 text-red-400" /> Abhishek Andure
-            </p>
+          
            
           </motion.div>
 
@@ -117,7 +115,7 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-12 pt-6 border-t border-gray-800 text-center text-sm"
+          className="mt-2 pt-2 border-t border-gray-800 text-center text-sm"
         >
           <p>Built with React</p>
           <p className="mt-1"> <p className="text-xs mt-2">© {new Date().getFullYear()} All rights reserved</p></p>

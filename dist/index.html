@@ -2,13 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <!-- Favicon for light mode -->
+    <link rel="icon" type="image/svg+xml" href="/logo-light.svg" media="(prefers-color-scheme: light)" />
+    <!-- Favicon for dark mode -->
+    <link rel="icon" type="image/svg+xml" href="/logo-dark.svg" media="(prefers-color-scheme: dark)" />
+    <!-- Fallback favicon -->
+    <link rel="icon" type="image/svg+xml" href="/logo-light.svg" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CodeNtraa</title>
-    <script type="module" crossorigin src="/assets/index-BndRFmvQ.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C0_86aL5.css">
+    
+    <!-- Dark mode detection script -->
+    <script>
+      // Check for dark mode preference and store in localStorage
+      if (typeof window !== 'undefined') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        }
+        
+        // Listen for changes in color scheme preference
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+          if (e.matches) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+          }
+        });
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-DWHRyueM.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BT_6wP3C.css">
   </head>
-  <body>
+  <body class="bg-white dark:bg-gray-900 transition-colors duration-300">
     <div id="root"></div>
   </body>
 </html>

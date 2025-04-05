@@ -1,9 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import axios from "axios";
 
 const Contact = () => {
-  // Animation variants
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setErrorMessage("");
+      setSuccessMessage("");
+    }, 10000);
+  });
+  
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value });
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validation
+    if(!formData.name || !formData.email || !formData.message) {
+      setErrorMessage("All fields are required");
+      return;
+    }
+    
+    if(!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)) {
+      setErrorMessage("Please enter a valid email address");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setErrorMessage("");
+      
+      // Send email via your backend API
+      const response = await axios.post('/api/registers/register',{name:formData.name, email: formData.email,
+      message: formData.message,
+      subject: "Inquiry registration"
+     
+
+       })
+      
+   
+  
+
+      setSuccessMessage("Your message has been sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+      
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setErrorMessage("Failed to send message. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Animation variants (keep your existing animation code)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -133,15 +194,40 @@ const Contact = () => {
               Get In Touch
             </motion.h3>
             
+            {errorMessage && (
+              <motion.div 
+                className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {errorMessage}
+              </motion.div>
+            )}
+            
+            {successMessage && (
+              <motion.div 
+                className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {successMessage}
+              </motion.div>
+            )}
+            
             <motion.form 
               className="space-y-5"
               variants={containerVariants}
+              onSubmit={handleSubmit}
             >
               <motion.div variants={itemVariants}>
                 <input 
+                  id="name"
+                  name="name"
                   type="text" 
                   placeholder="Full Name" 
                   className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00AFB9] text-black placeholder-gray-500 dark:text-white dark:placeholder-gray-300 transition-all hover:shadow-lg"
+                  onChange={handleChange}
+                  value={formData.name}
                 />
               </motion.div>
               
@@ -149,26 +235,35 @@ const Contact = () => {
                 <input 
                   type="email" 
                   placeholder="Email" 
+                  id="email"
+                  name="email"
                   className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00AFB9] text-black placeholder-gray-500 dark:text-white dark:placeholder-gray-300 transition-all hover:shadow-lg"
+                  onChange={handleChange}
+                  value={formData.email}
                 />
               </motion.div>
               
               <motion.div variants={itemVariants}>
                 <textarea 
+                  id="message"
+                  name="message" 
                   rows="4" 
                   placeholder="Your Message" 
                   className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FCBF49] text-black placeholder-gray-500 dark:text-white dark:placeholder-gray-300 transition-all hover:shadow-lg"
+                  onChange={handleChange}
+                  value={formData.message}
                 />
               </motion.div>
               
               <motion.div variants={itemVariants}>
                 <motion.button 
                   type="submit" 
-                  className="w-full bg-[#00AFB9] text-slate-900 py-4 rounded-lg font-bold text-lg hover:bg-[#f8d77d]"
+                  className="w-full bg-[#00AFB9] text-slate-900 py-4 rounded-lg font-bold text-lg hover:bg-[#f8d77d] disabled:opacity-50"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
+                  disabled={loading}
                 >
-                  Send Message
+                  {loading ? "Sending..." : "Send Message"}
                 </motion.button>
               </motion.div>
             </motion.form>
@@ -180,3 +275,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

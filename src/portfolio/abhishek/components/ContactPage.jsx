@@ -1,7 +1,28 @@
 import { motion } from 'framer-motion';
-import { FiMail, FiMapPin, FiPhone, FiSend, FiLinkedin, FiGithub, FiTwitter, FiX } from 'react-icons/fi';
+import { useEffect, useState } from 'react';
+import { 
+  FiMail, FiMapPin, FiPhone, FiSend, 
+  FiLinkedin, FiGithub, FiTwitter, FiX 
+} from 'react-icons/fi';
 
 const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setSubmitStatus("");
+      }, 10000);
+    });
+    
+
   const contactMethods = [
     {
       icon: <FiMail className="text-indigo-400" size={24} />,
@@ -12,8 +33,8 @@ const ContactPage = () => {
     {
       icon: <FiMapPin className="text-teal-400" size={24} />,
       title: "Location",
-      value: "Pune, Mharashtra, India",
-      link: "https://www.google.com/maps/place/18%C2%B043'55.3%22N+73%C2%B040'59.1%22E/@18.7320341,73.6805121,17z/data=!3m1!4b1!4m4!3m3!8m2!3d18.732029!4d73.683087?entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+      value: "Pune, Maharashtra, India",
+      link: "https://www.google.com/maps/place/Pune"
     },
     {
       icon: <FiPhone className="text-purple-400" size={24} />,
@@ -37,9 +58,60 @@ const ContactPage = () => {
     {
       icon: <FiX className="text-sky-400" size={20} />,
       name: "Twitter",
-      url: "https://x.com/aa_abhiandure2?t=m05WTOPjxLRPuE_jHqhp0Q&s=09"
+      url: "https://x.com/aa_abhiandure2"
     }
   ];
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('/api/registers/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({ 
+          success: true, 
+          message: 'Message sent successfully! I will get back to you soon.' 
+        });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus({ 
+          success: false, 
+          message: data.message || 'Failed to send message. Please try again.' 
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({ 
+        success: false, 
+        message: 'Network error. Please check your connection and try again.' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id='contact1' className="min-h-screen py-20 px-4 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
@@ -126,18 +198,22 @@ const ContactPage = () => {
                 Send Me a Message
               </h3>
               
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <label htmlFor="name" className="block text-gray-400 mb-2">Your Name</label>
+                  <label htmlFor="name" className="block text-gray-400 mb-2">Your Name *</label>
                   <input
                     type="text"
                     id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                    placeholder="Enter your Name"
+                    placeholder="Enter your name"
+                    required
                   />
                 </motion.div>
                 
@@ -146,12 +222,16 @@ const ContactPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 }}
                 >
-                  <label htmlFor="email" className="block text-gray-400 mb-2">Your Email</label>
+                  <label htmlFor="email" className="block text-gray-400 mb-2">Your Email *</label>
                   <input
                     type="email"
                     id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                    placeholder="Enter your Email"
+                    placeholder="Enter your email"
+                    required
                   />
                 </motion.div>
                 
@@ -164,6 +244,9 @@ const ContactPage = () => {
                   <input
                     type="text"
                     id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                     placeholder="Project Inquiry"
                   />
@@ -174,26 +257,47 @@ const ContactPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9 }}
                 >
-                  <label htmlFor="message" className="block text-gray-400 mb-2">Your Message</label>
+                  <label htmlFor="message" className="block text-gray-400 mb-2">Your Message *</label>
                   <textarea
                     id="message"
+                    name="message"
                     rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                     placeholder="Hello, I'd like to talk about..."
+                    required
                   ></textarea>
                 </motion.div>
                 
+                {submitStatus && (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className={`p-4 rounded-lg ${submitStatus.success ? 'bg-green-900/50' : 'bg-red-900/50'}`}
+                  >
+                    {submitStatus.message}
+                  </motion.div>
+                )}
+                
                 <motion.button
                   type="submit"
+                  disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-teal-600 rounded-full font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300"
+                  className={`flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-teal-600 rounded-full font-medium hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
                 >
-                  <FiSend className="mr-2" />
-                  Send Message
+                  {isSubmitting ? (
+                    'Sending...'
+                  ) : (
+                    <>
+                      <FiSend className="mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </motion.button>
               </form>
             </div>

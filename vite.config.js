@@ -4,13 +4,15 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  assetsInclude: ['**/*.glb'],
   plugins: [react(),
     tailwindcss(),
-
+    
   ],
   server: {
-    host: "192.168.1.111", // Ensures it's accessible externally
-    port: 5173,            // Default Vite port
+  proxy: {
+  '/api': 'http://localhost:5000/',    
   },
+},
   
 })
